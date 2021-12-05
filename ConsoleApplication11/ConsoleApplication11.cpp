@@ -70,23 +70,26 @@ void RightSideSqare(int NumberString, int End = 10)
 int main()
 {
     int End = 17;
-    int NumberString;
-    std::cin >> NumberString;
-    if (NumberString > End/2 || NumberString < 0)
-    {
-        std::cout << "Ty Durachek";
-        return 0;
-    }
+    int Radius;
+    int x;
+    int y;
+    std::cin >> Radius;
     fillTow(End, End);
-    for (; NumberString != -1 && NumberString > -1; NumberString = NumberString - 2)
+    for (y = 0; y != End; y++)
     {
-        TopStringSqare(NumberString,End);
-        BottomStringSqare(NumberString, End);
-        leftSideSqare(NumberString, End);
-        RightSideSqare(NumberString, End);
+        for (x = 0; x != End; x++)
+        {
+            if (x*x+y*y >= Radius*Radius && x * x + y * y < (Radius+1) * (Radius+1))
+            {
+                batya[x][y] = batya[x][y] = 1;
+            }
+            else
+            {
+                batya[x][y] = batya[x][y] = 0;
+            }
+        }
     }
-    OutMatr(End, End);
-
+    OutMatr(End,End);
 }
 //for (;  < brat2; std::cout << "\n", brat2 = brat2 + 50 )
 
