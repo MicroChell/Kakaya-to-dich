@@ -4,13 +4,13 @@
 #include <iostream>
 
 int  batya[17][17];
-void fillTow (int  brat9, int  brat10)
+void fillTow(int  brat9, int  brat10)
 {
     for (int cestra = 0; cestra < brat9; cestra++)
     {
         for (int cplusplustra = 0; cplusplustra < brat10; cplusplustra++)
         {
-            batya[cestra][cplusplustra] = 2;
+            batya[cestra][cplusplustra] = 3;
         }
     }
 }
@@ -77,16 +77,25 @@ void RightSideSqare(int NumberString, int End = 17)
         batya[NumberColumn][NumberString] = 1;
     }
 }
-void ShiftMatr(int NumberRoll, int NumberColumn)
+void ShiftMatr(int NumberColumn, int NumberRow = 0)
 {
-    for (NumberRoll = 0, NumberColumn = 0; NumberRoll != 18; NumberRoll++)
+    int* Pointer = batya[NumberRow];
+    int* PointerShift = batya[NumberRow + 1];
+    for (int j = 0; j < 16; j++)
     {
-        batya[NumberRoll][NumberColumn] = batya[NumberRoll - 1][NumberColumn];
+        for (int i = 0; i < 17; i++)
+        {
+            *PointerShift = *Pointer;
+
+            PointerShift++;
+            Pointer++;
+        }
     }
 }
 void CreateSqare()
-{
-    int num = 0;
+{ 
+    int num;
+    std::cin >> num;
     TopStringSqare(num, 17);
     BottomStringSqare(num, 17);
     RightSideSqare(num, 17);
@@ -99,7 +108,7 @@ void CommandTablo()
     {
         std::cin >> Command;
 
-        if (strcmp(Command,"exit") == 0)
+        if (strcmp(Command,"2") == 0)
         {
             return;
         }
@@ -108,7 +117,7 @@ void CommandTablo()
             fillTow(17,17);
             
         }
-        else if (strcmp(Command, "OutMatr") == 0)
+        else if (strcmp(Command, "1") == 0)
         {
             OutMatr(17, 17);
             
