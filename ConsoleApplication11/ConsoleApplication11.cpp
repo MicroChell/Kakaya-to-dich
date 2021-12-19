@@ -77,20 +77,34 @@ void RightSideSqare(int NumberString, int End = 17)
         batya[NumberColumn][NumberString] = 1;
     }
 }
-void ShiftMatr(int NumberColumn, int NumberRow = 0)
+void ShiftMatr(int NumberRow = 17)
 {
-    int* Pointer = batya[NumberRow];
-    int* PointerShift = batya[NumberRow + 1];
-    for (int j = 0; j < 16; j++)
+    int NumberColumn;
+    std::cin >> NumberColumn;
+    for (int j = 16; j >= 0; j--)
     {
-        for (int i = 0; i < 17; i++)
+     
+        for (int i = 16; i >= 0; i--)
+        {
+            if (NumberColumn + j <= NumberRow)
+                batya[j][i] = batya[j - NumberColumn][i];
+            else
+                batya[j][i] = 0;
+        }
+    }
+ /*   for (int j = 16; j >= 0; j--)
+    {
+        int* Pointer = batya[j];
+        int* PointerShift = batya[j - 1];
+        for (int i = 16; i >= 0; i--)
         {
             *PointerShift = *Pointer;
 
             PointerShift++;
             Pointer++;
         }
-    }
+    }*/
+    
 }
 void CreateSqare()
 { 
@@ -106,13 +120,20 @@ void CommandTablo()
     char Command[10];
     for (int o = 0; o == 0;)
     {
+        std::cout << "1 - VivodMatr" << "\n";
+        std::cout << "2 - Vihod" << "\n";
+        std::cout << "3 - Zapolnit0" << "\n";
+        std::cout << "4 - Zapolnit2" << "\n";
+        std::cout << "5 - CreateSqare" << "\n";
+        std::cout << "6 - ShiftMatrix" << "\n";
+
         std::cin >> Command;
 
         if (strcmp(Command,"2") == 0)
         {
             return;
         }
-        else if (strcmp(Command, "fillTow") == 0)
+        else if (strcmp(Command, "4") == 0)
         {
             fillTow(17,17);
             
@@ -122,7 +143,7 @@ void CommandTablo()
             OutMatr(17, 17);
             
         }
-        else if (strcmp(Command, "fillZero") == 0)
+        else if (strcmp(Command, "3") == 0)
         {
             fillZero(17, 17);
           
@@ -146,11 +167,11 @@ void CommandTablo()
         {
             BottomStringSqare(17, 17);
         }
-        else if (strcmp(Command, "ShiftMatr") == 0)
+        else if (strcmp(Command, "6") == 0)
         {
-            ShiftMatr(17, 17);
+            ShiftMatr(17);
         }
-        else if (strcmp(Command, "CreateSqare") == 0)
+        else if (strcmp(Command, "5") == 0)
         {
             CreateSqare();
         }
@@ -163,6 +184,7 @@ void CommandTablo()
 int main()
 {
     CommandTablo();
+   
 }
 //for (;  < brat2; std::cout << "\n", brat2 = brat2 + 50 )
 
