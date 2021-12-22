@@ -4,6 +4,7 @@
 #include <iostream>
 
 int  batya[17][17];
+int End = 17;
 void fillTow(int  brat9, int  brat10)
 {
     for (int cestra = 0; cestra < brat9; cestra++)
@@ -41,7 +42,7 @@ void OutMatr(int  brat9, int  brat10)
         std::cout << "\n";
     }
 }
-void TopStringSqare(int NumberString, int End = 10)
+void TopStringSqare(int NumberString)
 {
 
     int NumberColumn = NumberString;
@@ -50,7 +51,7 @@ void TopStringSqare(int NumberString, int End = 10)
         batya[NumberString][NumberColumn] = 1;
     }
 }
-void BottomStringSqare(int NumberString = 1 , int End = 10)
+void BottomStringSqare(int NumberString = 1)
 {
     int BottomStringNumber = End -( NumberString + 1);
     int NumberColumn = NumberString;
@@ -59,7 +60,7 @@ void BottomStringSqare(int NumberString = 1 , int End = 10)
         batya[BottomStringNumber][NumberColumn] = 1;
     }
 }
-void leftSideSqare(int NumberString, int End = 10)
+void leftSideSqare(int NumberString)
 {
 
     int BottomStringNumber = End - (NumberString + 1);
@@ -69,7 +70,7 @@ void leftSideSqare(int NumberString, int End = 10)
         batya[NumberColumn][BottomStringNumber] = 1;
     }
 }
-void RightSideSqare(int NumberString, int End = 17)
+void RightSideSqare(int NumberString)
 {
     int NumberColumn = NumberString;
     for (; NumberColumn < End - NumberString; NumberColumn++)
@@ -106,14 +107,31 @@ void ShiftMatr(int NumberRow = 17)
     }*/
     
 }
+void CreateCircle(int Radius = 7, int widthCentr = 9, int rowCentr = 9, int row = 0, int width = 0,  int C = 9, int Width = 2)
+{
+    //std::cin >> Radius;
+        for (row = 0; row < End; row++)
+        {
+            for (width = 0; width < End; width++)
+            {
+                int WidthAndRow2 = (row - rowCentr) * (row - rowCentr) + (width - widthCentr) * (width - widthCentr);
+                int Radius1 = (Radius + Width) * (Radius + Width);
+                int Radius2 = Radius * Radius;
+                if (Radius1 * Radius1 > WidthAndRow2 && WidthAndRow2 > Radius2 * Radius2)
+                {
+                    batya[row][width] = 1;
+                }
+            }
+        }
+}
 void CreateSqare()
 { 
     int num;
     std::cin >> num;
-    TopStringSqare(num, 17);
-    BottomStringSqare(num, 17);
-    RightSideSqare(num, 17);
-    leftSideSqare(num, 17);
+    TopStringSqare(num);
+    BottomStringSqare(num);
+    RightSideSqare(num);
+    leftSideSqare(num);
 }
 void CommandTablo()
 {
@@ -150,22 +168,22 @@ void CommandTablo()
         }
         else if (strcmp(Command, "TopStringSqare") == 0)
         {
-            TopStringSqare(17, 17);
+            TopStringSqare(17);
            
         }
         else if (strcmp(Command, "leftSideSqare") == 0)
         {
-            leftSideSqare(17, 17);
+            leftSideSqare(17);
            
         }
         else if (strcmp(Command, "RightSideSqare") == 0)
         {
-            RightSideSqare(17, 17);
+            RightSideSqare(17);
            
         }
         else if (strcmp(Command, "BottomStringSqare") == 0)
         {
-            BottomStringSqare(17, 17);
+            BottomStringSqare(17);
         }
         else if (strcmp(Command, "6") == 0)
         {
@@ -174,6 +192,10 @@ void CommandTablo()
         else if (strcmp(Command, "5") == 0)
         {
             CreateSqare();
+        }
+        else if (strcmp(Command, "CreateCircle") == 0)
+        {
+            CreateCircle();
         }
         else
         {
